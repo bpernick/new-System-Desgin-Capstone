@@ -17,7 +17,7 @@ fs.readFile (path.join(__dirname, 'jsonData.json'), 'utf8', (err, data) => {
         let obj = JSON.parse(data.slice(1));
         for ( let i = 0; i < obj.Sheet1.length; i++){
             let entry = obj.Sheet1[i];
-            connection.query(`INSERT INTO products (name) VALUES (?)`, [entry.name], (err, msg) => {
+            connection.query(`INSERT INTO products (name, rating) VALUES (?,?)`, [entry.name, entry.rating], (err, msg) => {
                 if (err){
                     throw err;
                 }
