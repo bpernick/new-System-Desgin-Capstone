@@ -1,6 +1,7 @@
 const mysql = require ('mysql');
 const fs = require ('fs');
-const config = require('/Users/ben/Desktop/ben_image_render/config.js');
+const path = require('path');
+const config = require(path.join(__dirname, 'config.js'));
 
 var connection = mysql.createConnection({
   host     : 'localhost',
@@ -9,7 +10,7 @@ var connection = mysql.createConnection({
   database: 'image_render'
 });
 
-fs.readFile (`/Users/ben/Desktop/ben_image_render/database/jsonData.json`, 'utf8', (err, data) => {
+fs.readFile (path.join(__dirname, 'jsonData.json'), 'utf8', (err, data) => {
     if (err) {
         throw err;
     } else {
