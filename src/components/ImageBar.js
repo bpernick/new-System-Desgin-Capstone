@@ -13,7 +13,7 @@ export default class ImageBar extends React.Component {
         return (
         <div>{this.props.products.map( (product, i) => {
             if (product.name === this.props.product.name){
-            return(<img key = {i} src = {product.image}></img>)
+            return(<img className = 'bar' key = {i} src = {product.image}></img>)
             }
         })}</div>
         )

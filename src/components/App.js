@@ -4,6 +4,7 @@ import Title from './Title.js';
 import RatingsBar from "./RatingsBar.js";
 import ImageBar from './ImageBar.js';
 import MainImage from './MainImage.js';
+import './style.scss';
 import HiddenComponent from './HiddenComponent.js';
 
 export default class App extends Component {
@@ -27,10 +28,10 @@ export default class App extends Component {
   render() {
     return (
       <div>
-        {this.state.currentProduct && <Title product = {this.state.currentProduct}/>}
-        {this.state.currentProduct && <RatingsBar product = {this.state.currentProduct}/>}
-        {this.state.currentProduct && <MainImage product = {this.state.currentProduct}/>}
-        { this.state.currentProduct && <ImageBar products = {this.state.products} product = {this.state.currentProduct}/>}
+        {this.state.currentProduct && <Title className = 'ben' product = {this.state.currentProduct}/>}
+        {this.state.currentProduct && <RatingsBar className = 'ben' product = {this.state.currentProduct}/>}
+        {this.state.currentProduct && <MainImage className = 'ben' product = {this.state.currentProduct}/>}
+        { this.state.currentProduct && <ImageBar className = 'ben' products = {this.state.products} product = {this.state.currentProduct}/>}
       </div>
     );
   }
