@@ -11,7 +11,7 @@ var connection = mysql.createConnection({
 });
 
 module.exports.get = (callback) => {
-    connection.query(`Select image, name, rating FROM images INNER JOIN products ON images.product_id = products.id`, (err, images) =>{
+    connection.query(`Select products.id, image, name, rating FROM images INNER JOIN products ON images.product_id = products.id`, (err, images) =>{
         if (err) {
             callback(err);
             return;
