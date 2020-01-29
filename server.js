@@ -21,4 +21,8 @@ app.get('/images', (req, res) => {
     })
 })
 
+app.get('/Lionheart%20Helm', (req, res) => {
+    res.sendStatus(999)
+})
+
 app.listen (port, () => {console.log(`listening on port ${port}!`)})

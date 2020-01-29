@@ -20,16 +20,16 @@ export default class App extends Component {
       console.log(data)
       this.setState({
         products : data.data,
-        currentProduct: data.data[0].name
+        currentProduct: data.data[0]
       })
     })
   }
   render() {
     return (
       <div>
-        <Title name = {this.state.currentProduct}/>
-        <MainImage products = {this.state.products}/>
-        <ImageBar products = {this.state.products} name = {this.state.currentProduct}/>
+        {this.state.currentProduct && <Title product = {this.state.currentProduct}/>}
+        {this.state.currentProduct && <MainImage product = {this.state.currentProduct}/>}
+        { this.state.currentProduct && <ImageBar products = {this.state.products} product = {this.state.currentProduct}/>}
       </div>
     );
   }
