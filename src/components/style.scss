@@ -29,6 +29,37 @@
             width: 100px;
             .bar-img{
                 max-width: 90px;
+                border: 1px solid rgb(138, 138, 138);
+            }
+        }
+    }
+    .hide{
+        display: none;
+        
+    }
+    .hidden{
+        position: fixed;
+        top: 25%;
+        left: 30%;
+        background-color: white;
+        border: 1px solid black;
+        display: flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content: center;
+        width: 500px;
+        height: 300px;
+        .hidden-main-img{
+            max-width: 250px;
+        }
+        .hidden-image-bar{
+            display: flex;
+            flex-direction:column;
+            // align-items:center;
+            width: 50px;
+            .hidden-bar-img{
+                max-width: 45px;
+                border: 1px solid rgb(138, 138, 138);
             }
         }
     }

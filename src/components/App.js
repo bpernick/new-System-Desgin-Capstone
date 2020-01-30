@@ -8,21 +8,23 @@ import MainImage from './MainImage.js';
 import './style.scss';
 import HiddenComponent from './HiddenComponent.js';
 
-export default class App extends Component {
+export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
       products : [],
-      currentProduct: ''
+      currentProduct: '',
+      HiddenComponentClass: 'hidden'
     };
   }
+  
   componentDidMount() {
     axios.get('/images')
     .then( (data) => {
       console.log(data)
       this.setState({
         products : data.data,
-        currentProduct: data.data[0]
+        currentProduct: data.data[6]
       })
     })
   }
@@ -33,6 +35,7 @@ export default class App extends Component {
         {this.state.currentProduct && <Ids product = {this.state.currentProduct}/>}
           {this.state.currentProduct && <Title product = {this.state.currentProduct}/>}
           {this.state.currentProduct && <RatingsBar product = {this.state.currentProduct}/>}
+          {this.state.currentProduct && <HiddenComponent class ={this.state.HiddenComponentClass} products = {this.state.products} product = {this.state.currentProduct}/>}
           </div>
         <div className = 'images'>
           { this.state.currentProduct && <ImageBar products = {this.state.products} product = {this.state.currentProduct}/>}

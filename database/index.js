@@ -10,6 +10,15 @@ var connection = mysql.createConnection({
   database: 'image_render'
 });
 
+// var mysql = require('mysql');
+
+// var connection = mysql.createConnection({
+//   host     : process.env.RDS_HOSTNAME,
+//   user     : process.env.RDS_USERNAME,
+//   password : process.env.RDS_PASSWORD,
+//   port     : process.env.RDS_PORT
+// });
+
 module.exports.get = (callback) => {
     connection.query(`Select products.id, image, name, rating FROM images INNER JOIN products ON images.product_id = products.id`, (err, images) =>{
         if (err) {
