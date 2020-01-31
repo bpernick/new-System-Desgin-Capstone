@@ -15,7 +15,7 @@ export default class App extends React.Component {
       products : [],
       currentProduct: '',
       HiddenComponentClass: 'hide',
-      scale: 1
+      scale: 0.8
     };
   }
   
@@ -37,7 +37,7 @@ export default class App extends React.Component {
   handleCloseComponent(){
     this.setState({
       HiddenComponentClass: 'hide',
-      scale:1
+      scale: 0.8
     })
   }
   handleZoomIn () {
@@ -49,9 +49,11 @@ export default class App extends React.Component {
 
   handleZoomOut () {
     console.log('out!')
-    this.setState({
-        scale: this.state.scale - 0.1
-    })
+    if (this.state.scale >= 0.8){
+      this.setState({
+          scale: this.state.scale - 0.1
+      })
+    }
   }
   render() {
     return (
