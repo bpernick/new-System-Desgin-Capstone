@@ -24,7 +24,7 @@ export default class App extends React.Component {
       console.log(data)
       this.setState({
         products : data.data,
-        currentProduct: data.data[6]
+        currentProduct: data.data[200]
       })
     })
   }
@@ -38,6 +38,7 @@ export default class App extends React.Component {
       HiddenComponentClass: 'hide'
     })
   }
+
   render() {
     return (
       <div>
