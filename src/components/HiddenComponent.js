@@ -35,7 +35,7 @@ export default class HiddenComponent extends React.Component {
         console.log(this.state.product)
         return (
             
-            <div className = {this.state.visibility}>
+            <div className = {this.props.class}>
             {this.state.products && <HiddenImageBar products = {this.state.products} product = {this.state.product} onClick = {this.handleSwapImage.bind(this)}/>}
             <HiddenMainImage product = {this.state.product}/>
         </div>

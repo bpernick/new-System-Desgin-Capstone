@@ -14,7 +14,7 @@ export default class App extends React.Component {
     this.state = {
       products : [],
       currentProduct: '',
-      HiddenComponentClass: 'hidden'
+      HiddenComponentClass: 'hide'
     };
   }
   
@@ -28,6 +28,11 @@ export default class App extends React.Component {
       })
     })
   }
+  handleShowComponent(){
+    this.setState({
+      HiddenComponentClass: 'show-hidden'
+    })
+  }
   render() {
     return (
       <div>
@@ -38,8 +43,8 @@ export default class App extends React.Component {
           {this.state.currentProduct && <HiddenComponent class ={this.state.HiddenComponentClass} products = {this.state.products} product = {this.state.currentProduct}/>}
           </div>
         <div className = 'images'>
-          { this.state.currentProduct && <ImageBar products = {this.state.products} product = {this.state.currentProduct}/>}
-          {this.state.currentProduct && <MainImage product = {this.state.currentProduct}/>}
+          { this.state.currentProduct && <ImageBar onClick = {this.handleShowComponent.bind(this)} products = {this.state.products} product = {this.state.currentProduct}/>}
+          {this.state.currentProduct && <MainImage onClick = {this.handleShowComponent.bind(this)} product = {this.state.currentProduct}/>}
         </div>
       </div>
     );
