@@ -37,7 +37,7 @@
         display: none;
         
     }
-    .hidden{
+    .show-hidden{
         position: fixed;
         top: 25%;
         left: 30%;
@@ -47,15 +47,19 @@
         flex-direction:row;
         align-items:center;
         justify-content: center;
-        width: 500px;
-        height: 300px;
-        .hidden-main-img{
-            max-width: 250px;
+        width: 700px;
+        height: 600px;
+        .container{
+            overflow: hidden;
+            .hidden-main-img{
+                max-width: 500px;
+                max-height: 500px;
+            }
         }
         .hidden-image-bar{
             display: flex;
             flex-direction:column;
-            // align-items:center;
+            align-items:center;
             width: 50px;
             .hidden-bar-img{
                 max-width: 45px;

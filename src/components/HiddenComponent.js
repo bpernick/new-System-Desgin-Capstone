@@ -6,33 +6,41 @@ export default class HiddenComponent extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-          product: '',
-
+          visibility: this.props.class,
+          product: ''
       }
     }
     findOtherPics (){
-        answer = [];
+        let answer = [];
         this.props.products.forEach((product)=>{
-            if (product.name === this.props.product){
+            if (product.name === this.props.product.name){
                 answer.push(product.image)
             }
         })
-        return answer;
+        this.setState({products: answer})
     }
     componentDidMount(){
+        this.findOtherPics()
         this.setState ({
             visibility: this.props.class,
-            product: this.props.product.image,
-            products: this.findOtherPics()
+            product: this.props.product.image
         })
     }
+    handleSwapImage(event){
+        this.setState ({
+            product: event.target.name
+        })
+    }
+    
     render() {
-        console.log(this.state.product)
+        console.log(this.props.scale)
         return (
-            
-            <div className = {this.state.visibility}>
-            <HiddenImageBar products = {this.state.products} product = {this.state.product}/>
-            <HiddenMainImage product = {this.state.product}/>
+            <div className = {this.props.class}>
+            <button onClick = {this.props.onClick}>X</button>
+            <button onClick = {this.props.zoomIn}>+</button>
+            <button onClick = {this.props.zoomOut}>-</button>
+            {this.state.products && <HiddenImageBar products = {this.state.products} product = {this.state.product} onClick = {this.handleSwapImage.bind(this)}/>}
+            <HiddenMainImage product = {this.state.product} num = {this.props.scale}/>
         </div>
             )
     }
