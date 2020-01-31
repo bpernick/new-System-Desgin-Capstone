@@ -14,7 +14,7 @@ export default class App extends React.Component {
     this.state = {
       products : [],
       currentProduct: '',
-      HiddenComponentClass: 'hidden'
+      HiddenComponentClass: 'hidden',
     };
   }
   
@@ -23,8 +23,8 @@ export default class App extends React.Component {
     .then( (data) => {
       console.log(data)
       this.setState({
-        products : data.data,
-        currentProduct: data.data[6]
+        products : data.data
+
       })
     })
   }

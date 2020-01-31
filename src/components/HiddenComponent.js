@@ -6,15 +6,24 @@ export default class HiddenComponent extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-          visibility: this.props.class,
           product: '',
-          currentPic: ''
+
       }
+    }
+    findOtherPics (){
+        answer = [];
+        this.props.products.forEach((product)=>{
+            if (product.name === this.props.product){
+                answer.push(product.image)
+            }
+        })
+        return answer;
     }
     componentDidMount(){
         this.setState ({
-            product: this.props.product,
-            currentPic: ''
+            visibility: this.props.class,
+            product: this.props.product.image,
+            products: this.findOtherPics()
         })
     }
     render() {
@@ -22,7 +31,7 @@ export default class HiddenComponent extends React.Component {
         return (
             
             <div className = {this.state.visibility}>
-            <HiddenImageBar products = {this.props.products} product = {this.state.product}/>
+            <HiddenImageBar products = {this.state.products} product = {this.state.product}/>
             <HiddenMainImage product = {this.state.product}/>
         </div>
             )
