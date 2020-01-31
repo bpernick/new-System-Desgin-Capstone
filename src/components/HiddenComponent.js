@@ -7,14 +7,28 @@ export default class HiddenComponent extends React.Component {
       super(props);
       this.state = {
           visibility: this.props.class,
-          product: '',
-          currentPic: ''
+          product: ''
       }
     }
+    findOtherPics (){
+        let answer = [];
+        this.props.products.forEach((product)=>{
+            if (product.name === this.props.product.name){
+                answer.push(product.image)
+            }
+        })
+        this.setState({products: answer})
+    }
     componentDidMount(){
+        this.findOtherPics()
         this.setState ({
-            product: this.props.product,
-            currentPic: ''
+            visibility: this.props.class,
+            product: this.props.product.image,
+        })
+    }
+    handleSwapImage(event){
+        this.setState ({
+            product: event.target.name
         })
     }
     render() {
@@ -22,7 +36,7 @@ export default class HiddenComponent extends React.Component {
         return (
             
             <div className = {this.state.visibility}>
-            <HiddenImageBar products = {this.props.products} product = {this.state.product}/>
+            {this.state.products && <HiddenImageBar products = {this.state.products} product = {this.state.product} onClick = {this.handleSwapImage.bind(this)}/>}
             <HiddenMainImage product = {this.state.product}/>
         </div>
             )

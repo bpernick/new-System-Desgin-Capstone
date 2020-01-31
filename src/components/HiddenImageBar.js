@@ -11,9 +11,7 @@ export default class HiddenImageBar extends React.Component {
     render () {
         return (
         <div className = 'hidden-image-bar' >{this.props.products.map( (product, i) => {
-            if (product.name === this.props.product.name){
-            return(<img className = 'hidden-bar-img' key = {i} src = {product.image}></img>)
-            }
+            return(<img className = 'hidden-bar-img' name = {product} key = {i} src = {product} onClick={this.props.onClick}></img>)
         })}</div>
         )
     }

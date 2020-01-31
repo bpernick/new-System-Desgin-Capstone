@@ -10,7 +10,7 @@ export default class HiddenMainImage extends React.Component {
     render () {
         console.log(this.props.product)
         return (
-            <img className = 'hidden-main-img' src = {this.props.product.image}></img>
+            <img className = 'hidden-main-img' src = {this.props.product}></img>
         )
     }
 }
