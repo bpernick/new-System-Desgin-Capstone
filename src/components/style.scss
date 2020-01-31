@@ -47,11 +47,14 @@
         flex-direction:row;
         align-items:center;
         justify-content: center;
-        width: 400px;
-        height: 400px;
-        .hidden-main-img{
-            max-width: 250px;
-            max-height: 300px;
+        width: 700px;
+        height: 600px;
+        .container{
+            overflow: hidden;
+            .hidden-main-img{
+                max-width: 500px;
+                max-height: 500px;
+            }
         }
         .hidden-image-bar{
             display: flex;

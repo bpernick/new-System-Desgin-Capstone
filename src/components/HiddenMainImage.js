@@ -18,7 +18,7 @@ export default class HiddenMainImage extends React.Component {
     render () {
         console.log(this.props.num)
         return (
-            <img style = {{transform: `scale(${this.props.num})`}} className = 'hidden-main-img' src = {this.props.product}></img>
+            <div className = 'container'><img style = {{transform: `scale(${this.props.num})`,}} className = 'hidden-main-img' src = {this.props.product}></img></div>
         )
     }
 }
