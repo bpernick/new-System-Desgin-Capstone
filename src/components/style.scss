@@ -47,7 +47,7 @@
         flex-direction:row;
         align-items:center;
         justify-content: center;
-        width: 500px;
+        width: 400px;
         height: 400px;
         .hidden-main-img{
             max-width: 250px;
@@ -56,7 +56,7 @@
         .hidden-image-bar{
             display: flex;
             flex-direction:column;
-            // align-items:center;
+            align-items:center;
             width: 50px;
             .hidden-bar-img{
                 max-width: 45px;

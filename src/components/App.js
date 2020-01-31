@@ -33,6 +33,11 @@ export default class App extends React.Component {
       HiddenComponentClass: 'show-hidden'
     })
   }
+  handleCloseComponent(){
+    this.setState({
+      HiddenComponentClass: 'hide'
+    })
+  }
   render() {
     return (
       <div>
@@ -40,7 +45,7 @@ export default class App extends React.Component {
         {this.state.currentProduct && <Ids product = {this.state.currentProduct}/>}
           {this.state.currentProduct && <Title product = {this.state.currentProduct}/>}
           {this.state.currentProduct && <RatingsBar product = {this.state.currentProduct}/>}
-          {this.state.currentProduct && <HiddenComponent class ={this.state.HiddenComponentClass} products = {this.state.products} product = {this.state.currentProduct}/>}
+          {this.state.currentProduct && <HiddenComponent onClick = {this.handleCloseComponent.bind(this)} class ={this.state.HiddenComponentClass} products = {this.state.products} product = {this.state.currentProduct}/>}
           </div>
         <div className = 'images'>
           { this.state.currentProduct && <ImageBar onClick = {this.handleShowComponent.bind(this)} products = {this.state.products} product = {this.state.currentProduct}/>}
