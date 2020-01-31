@@ -14,7 +14,8 @@ export default class App extends React.Component {
     this.state = {
       products : [],
       currentProduct: '',
-      HiddenComponentClass: 'hide'
+      HiddenComponentClass: 'hide',
+      scale: 1
     };
   }
   
@@ -35,10 +36,23 @@ export default class App extends React.Component {
   }
   handleCloseComponent(){
     this.setState({
-      HiddenComponentClass: 'hide'
+      HiddenComponentClass: 'hide',
+      scale:1
+    })
+  }
+  handleZoomIn () {
+    console.log('in!')
+    this.setState({
+      scale: this.state.scale + 0.1
     })
   }
 
+  handleZoomOut () {
+    console.log('out!')
+    this.setState({
+        scale: this.state.scale - 0.1
+    })
+  }
   render() {
     return (
       <div>
@@ -46,7 +60,7 @@ export default class App extends React.Component {
         {this.state.currentProduct && <Ids product = {this.state.currentProduct}/>}
           {this.state.currentProduct && <Title product = {this.state.currentProduct}/>}
           {this.state.currentProduct && <RatingsBar product = {this.state.currentProduct}/>}
-          {this.state.currentProduct && <HiddenComponent onClick = {this.handleCloseComponent.bind(this)} class ={this.state.HiddenComponentClass} products = {this.state.products} product = {this.state.currentProduct}/>}
+          {this.state.currentProduct && <HiddenComponent scale = {this.state.scale} zoomIn = {this.handleZoomIn.bind(this)} zoomOut = {this.handleZoomOut.bind(this)}  onClick = {this.handleCloseComponent.bind(this)} class ={this.state.HiddenComponentClass} products = {this.state.products} product = {this.state.currentProduct}/>}
           </div>
         <div className = 'images'>
           { this.state.currentProduct && <ImageBar onClick = {this.handleShowComponent.bind(this)} products = {this.state.products} product = {this.state.currentProduct}/>}
