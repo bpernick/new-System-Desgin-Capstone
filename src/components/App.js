@@ -33,8 +33,8 @@ export default class App extends React.Component {
     .then( (data) => {
       this.setState({
         products : data.data,
-        currentProduct: data.data[19],
-        images: this.findOtherPics(data.data, data.data[19])
+        currentProduct: data.data[212],
+        images: this.findOtherPics(data.data, data.data[212])
       })
     })
   }
