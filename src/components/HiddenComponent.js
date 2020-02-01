@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import HiddenImageBar from "./HiddenImageBar";
 import HiddenMainImage from "./HiddenMainImage";
-
+import HiddenTitle from "./HiddenTitle";
 export default class HiddenComponent extends React.Component {
     constructor(props) {
       super(props);
@@ -10,17 +10,16 @@ export default class HiddenComponent extends React.Component {
           product: ''
       }
     }
-    findOtherPics (){
-        let answer = [];
-        this.props.products.forEach((product)=>{
-            if (product.name === this.props.product.name){
-                answer.push(product.image)
-            }
-        })
-        this.setState({products: answer})
-    }
+    // findOtherPics (){
+    //     let answer = [];
+    //     this.props.products.forEach((product)=>{
+    //         if (product.name === this.props.product.name){
+    //             answer.push(product.image)
+    //         }
+    //     })
+    //     this.setState({products: answer})
+    // }
     componentDidMount(){
-        this.findOtherPics()
         this.setState ({
             visibility: this.props.class,
             product: this.props.product.image
@@ -35,12 +34,13 @@ export default class HiddenComponent extends React.Component {
     render() {
         console.log(this.props.scale)
         return (
-            <div className = {this.props.class}>
-            <button onClick = {this.props.onClick}>X</button>
-            <button onClick = {this.props.zoomIn}>+</button>
-            <button onClick = {this.props.zoomOut}>-</button>
-            {this.state.products && <HiddenImageBar products = {this.state.products} product = {this.state.product} onClick = {this.handleSwapImage.bind(this)}/>}
-            <HiddenMainImage product = {this.state.product} num = {this.props.scale}/>
+        <div className = {this.props.class}>
+            <div className = 'top-row'>
+                <HiddenTitle name ={this.props.name}/>
+                <button className = 'close' onClick = {this.props.onClick}>X</button>
+            </div>
+            <HiddenImageBar products = {this.props.images} product = {this.state.product} onClick = {this.handleSwapImage.bind(this)}/>
+            <HiddenMainImage zoomIn = {this.props.zoomIn} zoomOut = {this.props.zoomOut} product = {this.state.product} num = {this.props.scale}/>
         </div>
             )
     }
