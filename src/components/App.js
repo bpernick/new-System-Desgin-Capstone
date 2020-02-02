@@ -33,8 +33,8 @@ export default class App extends React.Component {
     .then( (data) => {
       this.setState({
         products : data.data,
-        currentProduct: data.data[212],
-        images: this.findOtherPics(data.data, data.data[212])
+        currentProduct: data.data[10],
+        images: this.findOtherPics(data.data, data.data[10])
       })
     })
   }
@@ -51,29 +51,31 @@ export default class App extends React.Component {
     })
   }
   handleZoomIn () {
-    console.log('in!')
     this.setState({
       scale: this.state.scale + 0.1
     })
   }
 
   handleZoomOut () {
-    console.log('out!')
     if (this.state.scale >= 0.8){
       this.setState({
           scale: this.state.scale - 0.1
       })
     }
   }
+  resetZoom(){
+    this.setState({
+      scale: 1
+    })
+  }
   render() {
-    console.log(this.state.images)
     return (
       <div>
         <div className = 'text'>
         {this.state.currentProduct && <Ids product = {this.state.currentProduct}/>}
           {this.state.currentProduct && <Title product = {this.state.currentProduct}/>}
           {this.state.currentProduct && <RatingsBar product = {this.state.currentProduct}/>}
-          {this.state.currentProduct && <HiddenComponent scale = {this.state.scale} zoomIn = {this.handleZoomIn.bind(this)} zoomOut = {this.handleZoomOut.bind(this)}  onClick = {this.handleCloseComponent.bind(this)} class ={this.state.HiddenComponentClass} products = {this.state.products} product = {this.state.currentProduct} images = {this.state.images} name = {this.state.currentProduct.name}/>}
+          {this.state.currentProduct && <HiddenComponent scale = {this.state.scale} resetZoom = {this.resetZoom.bind(this)} zoomIn = {this.handleZoomIn.bind(this)} zoomOut = {this.handleZoomOut.bind(this)}  onClick = {this.handleCloseComponent.bind(this)} class ={this.state.HiddenComponentClass} products = {this.state.products} product = {this.state.currentProduct} images = {this.state.images} name = {this.state.currentProduct.name}/>}
           </div>
         <div className = 'images'>
           { this.state.currentProduct && <ImageBar onClick = {this.handleShowComponent.bind(this)} products = {this.state.products} product = {this.state.currentProduct}/>}

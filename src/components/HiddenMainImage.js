@@ -23,7 +23,7 @@ export default class HiddenMainImage extends React.Component {
                 <div className = 'buttons'>
                     <button className = 'button' onClick = {this.props.zoomIn}>+</button>
                     <button className = 'button' onClick = {this.props.zoomOut}>-</button>
-                    <button className = 'button'>foo</button>
+                    <button className = 'button' onClick = {this.props.resetZoom}>foo</button>
                 </div>
                 </div>
         )
