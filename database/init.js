@@ -3,19 +3,20 @@ const fs = require ('fs');
 const path = require('path');
 const config = require(path.join(__dirname, 'config.js'));
 
+// var connection = mysql.createConnection({
+//   host     : 'localhost',
+//   user     : 'root',
+//   password : config.mySQLpassword,
+//   database: 'image_render' 
+// });
+
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : config.mySQLpassword,
+  host     : config.RDS_HOSTNAME,
+  user     : 'bpernick',
+  password : config.AWSpassword,
+  port     : '3306',
   database: 'image_render' 
 });
-
-// var connection = mysql.createConnection({
-//   host     : config.RDS_HOSTNAME,
-//   user     : bpernick,
-//   password : config.AWSpassword,
-//   port     : '3306'
-// });
 
 
 fs.readFile (path.join(__dirname, 'jsonData.json'), 'utf8', (err, data) => {
