@@ -3,19 +3,20 @@ const fs = require ('fs');
 const path = require('path');
 const config = require(path.join(__dirname, 'config.js'));
 
+// var connection = mysql.createConnection({
+//   host     : 'localhost',
+//   user     : 'root',
+//   password : config.mySQLpassword,
+//   database: 'image_render'
+// });
+
 var connection = mysql.createConnection({
-  host     : 'localhost',
+  host     : 'database-2.cupetxxpwjik.us-east-2.rds.amazonaws.com',
   user     : 'root',
-  password : config.mySQLpassword,
+  password : 'rootroot',
+  port     : 3306,
   database: 'image_render'
 });
-
-// var connection = mysql.createConnection({
-//     host     : config.RDS_HOSTNAME,
-//     user     : bpernick,
-//     password : config.AWSpassword,
-//     port     : '3306'
-//   });
 
   connection.connect(function(err) {
     if (err) {

@@ -12,7 +12,7 @@ const config = require(path.join(__dirname, 'config.js'));
 
 var connection = mysql.createConnection({
   host     : config.RDS_HOSTNAME,
-  user     : 'bpernick',
+  user     : 'root',
   password : config.AWSpassword,
   port     : '3306',
   database: 'image_render' 

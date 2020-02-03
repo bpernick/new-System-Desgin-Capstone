@@ -3,7 +3,7 @@ const app = express();
 const path = require ('path');
 const bodyParser = require ('body-parser');
 const database = require (path.join (__dirname, 'database', 'index.js'))
-const port = 3004;
+const port = 8080;
 
 
 app.use(express.static(path.join(__dirname, 'dist')));

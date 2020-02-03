@@ -1,7 +1,7 @@
 {
   "AWSEBDockerrunVersion": "1",
   "Image": {
-    "Name": "bpernick/node-web-app",
+    "Name": "bpernick/picture:latest",
     "Update": "true"
   },
   "Ports": [

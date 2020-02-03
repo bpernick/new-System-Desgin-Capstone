@@ -15,7 +15,7 @@ export default class App extends React.Component {
       products : [],
       currentProduct: '',
       HiddenComponentClass: 'hide',
-      scale: 1
+      scale: 1,
     };
   }
   findOtherPics (data, product){
