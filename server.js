@@ -18,7 +18,6 @@ app.get('/images', (req, res) => {
         }
         else {
             res.send(middleware.nestedArray(images));
-            //res.send(images)
         }
     })
 })

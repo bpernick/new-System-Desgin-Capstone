@@ -16,14 +16,13 @@ export default class App extends React.Component {
       currentProduct: '',
       HiddenComponentClass: 'hide',
       scale: 1,
+      search: 67
     };
   }
-  findOtherPics (data, product){
+  findOtherPics (data){
     let answer = [];
     data.forEach((datum)=>{
-        if (datum.name === product.name){
-            answer.push(datum.image)
-        }
+        answer.push(datum.image)
     })
     return answer;
 }
@@ -31,10 +30,11 @@ export default class App extends React.Component {
   componentDidMount() {
     axios.get('/images')
     .then( (data) => {
+      console.log(data.data[10])
       this.setState({
         products : data.data,
-        currentProduct: data.data[10],
-        images: this.findOtherPics(data.data, data.data[10])
+        currentProduct: data.data[this.state.search][0],
+        images: this.findOtherPics(data.data[this.state.search])
       })
     })
   }
@@ -78,7 +78,7 @@ export default class App extends React.Component {
           {this.state.currentProduct && <HiddenComponent scale = {this.state.scale} resetZoom = {this.resetZoom.bind(this)} zoomIn = {this.handleZoomIn.bind(this)} zoomOut = {this.handleZoomOut.bind(this)}  onClick = {this.handleCloseComponent.bind(this)} class ={this.state.HiddenComponentClass} products = {this.state.products} product = {this.state.currentProduct} images = {this.state.images} name = {this.state.currentProduct.name}/>}
           </div>
         <div className = 'images'>
-          { this.state.currentProduct && <ImageBar onClick = {this.handleShowComponent.bind(this)} products = {this.state.products} product = {this.state.currentProduct}/>}
+          { this.state.currentProduct && <ImageBar onClick = {this.handleShowComponent.bind(this)} images = {this.state.images} product = {this.state.currentProduct}/>}
           {this.state.currentProduct && <MainImage onClick = {this.handleShowComponent.bind(this)} product = {this.state.currentProduct}/>}
         </div>
       </div>
