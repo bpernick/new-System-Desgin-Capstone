@@ -10,13 +10,13 @@ const config = require(path.join(__dirname, 'config.js'));
 //   database: 'image_render' 
 // });
 
-var connection = mysql.createConnection({
-  host     : config.RDS_HOSTNAME,
-  user     : 'root',
-  password : config.AWSpassword,
-  port     : '3306',
-  database: 'image_render' 
-});
+// var connection = mysql.createConnection({
+//   host     : config.RDS_HOSTNAME,
+//   user     : 'root',
+//   password : config.AWSpassword,
+//   port     : '3306',
+//   database: 'image_render' 
+// });
 
 
 fs.readFile (path.join(__dirname, 'jsonData.json'), 'utf8', (err, data) => {

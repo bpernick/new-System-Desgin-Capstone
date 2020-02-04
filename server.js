@@ -2,7 +2,8 @@ const express = require ('express');
 const app = express();
 const path = require ('path');
 const bodyParser = require ('body-parser');
-const database = require (path.join (__dirname, 'database', 'index.js'))
+const database = require (path.join (__dirname, 'database', 'index.js'));
+const middleware = require('./middleware')
 const port = 8080;
 
 
@@ -16,7 +17,8 @@ app.get('/images', (req, res) => {
             return;
         }
         else {
-            res.send(images);
+            res.send(middleware.nestedArray(images));
+            //res.send(images)
         }
     })
 })
