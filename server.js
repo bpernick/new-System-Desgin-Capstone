@@ -3,10 +3,12 @@ const app = express();
 const path = require ('path');
 const bodyParser = require ('body-parser');
 const database = require (path.join (__dirname, 'database', 'index.js'));
-const middleware = require('./middleware')
+const middleware = require('./middleware');
+const cors = require('cors');
 const port = 8080;
 
 
+app.use(cors());
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/images', (req, res) => {
@@ -17,13 +19,10 @@ app.get('/images', (req, res) => {
             return;
         }
         else {
+            //res.setHeader('Access-Control-Allow-Origin', '*');
             res.send(middleware.nestedArray(images));
         }
     })
-})
-
-app.get('/Lionheart%20Helm', (req, res) => {
-    res.sendStatus(999)
 })
 
 app.listen (port, () => {console.log(`listening on port ${port}!`)})

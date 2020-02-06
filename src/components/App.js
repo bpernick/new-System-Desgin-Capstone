@@ -7,7 +7,7 @@ import ImageBar from './ImageBar.js';
 import MainImage from './MainImage.js';
 import './style.scss';
 import HiddenComponent from './HiddenComponent.js';
-
+const baseURL = 'http://newphoto2.us-east-2.elasticbeanstalk.com/';
 export default class App extends React.Component {
   constructor() {
     super();
@@ -16,7 +16,7 @@ export default class App extends React.Component {
       currentProduct: '',
       HiddenComponentClass: 'hide',
       scale: 1,
-      search: 67
+      search: 87
     };
   }
   findOtherPics (data){
@@ -28,7 +28,12 @@ export default class App extends React.Component {
 }
 
   componentDidMount() {
-    axios.get('/images')
+    window.addEventListener('search', (e)=>{
+      this.setState({search:e.target.search}).bind(this)
+    })
+  
+    axios.get('/images', {baseURL})
+    //axios.get('/images')
     .then( (data) => {
       console.log(data.data[10])
       this.setState({
