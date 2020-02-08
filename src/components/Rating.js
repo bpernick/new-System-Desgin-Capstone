@@ -1,10 +1,12 @@
 import React from "react";
 import StarRatings from 'react-star-ratings';
+import StarRatingComponent from 'react-star-rating-component';
 
 const Rating = (props) => {
     return (
     <div className = 'rating'>
         <p className = 'blue-text'>87 Ratings</p>
+
         <StarRatings
           rating={props.rating}
           starDimension = '25px'

@@ -5,7 +5,7 @@
     top:0;
     left:-100%;
     background-color: black;
-    z-index: 2;
+    z-index: 3;
     opacity: .5;
 }
 
@@ -144,7 +144,7 @@
         justify-content: center;
         width: 700px;
         height: 600px;
-        z-index: 3;
+        z-index: 500;
         .container{
             overflow: hidden;
             position: relative;
@@ -215,8 +215,9 @@
             flex-direction:column;
             align-items:center;
             flex-wrap: wrap;
-            height :300px;
+            height: 300px;
             width: 50px;
+            cursor: pointer;
             .hidden-bar-img{
                 width: 45px;
                 height: 45px;

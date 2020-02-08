@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 
-const style = {
-    //transform: 'scale(1.5)'
-}
 export default class HiddenMainImage extends React.Component {
     constructor(props){
         super(props);
@@ -10,11 +7,6 @@ export default class HiddenMainImage extends React.Component {
             style : {},
             button: ' translucent-button'
         };
-    }
-    componentDidMount (){
-        this.setState ({
-            style : {transform: `scale(${this.props.num})`}
-        })
     }
     handleMouseIn(){
         this.setState ({button: ''})
@@ -32,7 +24,7 @@ export default class HiddenMainImage extends React.Component {
                 <div className = {'buttons' + this.state.button} onMouseEnter ={this.handleMouseIn.bind(this)} onMouseLeave ={this.handleMouseOut.bind(this)}>
                     <button className = 'button zoom-in' onClick = {this.props.zoomIn}>+</button>
                     <button className = 'button zoom-out' onClick = {this.props.zoomOut}>-</button>
-                    <button className = 'button reset' onClick = {this.props.resetZoom}></button>
+                    <img className = 'button reset' onClick = {this.props.resetZoom} src = '../images/reset.png'></img>
                 </div>
                 </div>
         )
