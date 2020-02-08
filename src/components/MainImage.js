@@ -9,7 +9,7 @@ export default class MainImage extends React.Component {
 
     render () {
         return (
-            <img onClick = {this.props.onClick} className = 'main-img' src = {this.props.product.image}></img>
+            <div className = 'main-image-container'><img onClick = {this.props.onClick} className = 'main-img' src = {this.props.product.image}></img></div>
         )
     }
 }

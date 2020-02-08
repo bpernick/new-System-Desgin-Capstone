@@ -19,7 +19,6 @@ app.get('/images', (req, res) => {
             return;
         }
         else {
-            //res.setHeader('Access-Control-Allow-Origin', '*');
             res.send(middleware.nestedArray(images));
         }
     })

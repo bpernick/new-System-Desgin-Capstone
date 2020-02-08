@@ -1,25 +1,29 @@
 module.exports.nestedArray = (images) => {
     let answer = [[]];
     let id = 1;
-    let inner = [];
+    let product = [];
     
-    for (let i = 0; i <=images.length; i++){
+    for (let i = 0; i <images.length; i++){
+        console.log(i)
+        if (images[i].rating === undefined){
+            images[i].rating = 3;
+        }
         if(i===images.length){
-            answer.push(inner);
+            answer.push(product);
         }
         else if (images[i].id===id){
-            inner.push(images[i])
+            product.push(images[i])
         }
         else if (images[i].id-id>1){
             while(images[i].id>id){
-                answer.push(inner);
-                inner = [];
+                answer.push(product);
+                product = [];
                 id++;
             }
         }
         else {
-            answer[id] = inner;
-            inner = [images[i]];
+            answer[id] = product;
+            product = [images[i]];
             id++;
         }
     }
