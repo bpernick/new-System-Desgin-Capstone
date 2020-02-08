@@ -150,7 +150,9 @@
             position: relative;
             width: 500px;
             height: 500px;
-        
+            .translucent-button{
+                opacity: .5;
+            }
             .buttons{
                 display: flex;
                 flex-direction: column;
@@ -159,7 +161,14 @@
                 top: 5%;
                 width: 10%;
                 height: 20%;
+                .zoom-in{
+                    color: white !important;
+                    background-color: rgb(3, 81, 125);
+                }
                 .button{
+                    color: #5d5d5d;
+                    // font-weight: bold;
+                    font-size: 20px;
                     object-fit: fill;
                     height: 33%;
                     text-align: center;

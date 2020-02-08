@@ -4,8 +4,7 @@ module.exports.nestedArray = (images) => {
     let product = [];
     
     for (let i = 0; i <images.length; i++){
-        console.log(i)
-        if (images[i].rating === undefined){
+        if (images[i].rating === null){
             images[i].rating = 3;
         }
         if(i===images.length){
