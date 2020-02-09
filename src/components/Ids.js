@@ -17,7 +17,7 @@ const Ids = (props) => {
     return (
         <div className = 'ids'>
             <p> Item # {props.product.id}</p>
-    <p> Model # {hashProductName(props.product.name)}</p>
+            <p id='model'> Model # {hashProductName(props.product.name)}</p>
         </div>
     )
 }

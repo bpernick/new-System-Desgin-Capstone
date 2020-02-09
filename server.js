@@ -17,7 +17,7 @@ app.get('/images', (req, res) => {
             console.log(err);
             res.sendStatus(500);
             return;
-        }
+        } 
         else {
             res.send(middleware.nestedArray(images));
         }
