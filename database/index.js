@@ -11,7 +11,7 @@ const config = require(path.join(__dirname, 'config.js'));
 // });
 
 var connection = mysql.createConnection({
-  host     : 'database-2.cupetxxpwjik.us-east-2.rds.amazonaws.com',
+  host     : 'database-1.cupetxxpwjik.us-east-2.rds.amazonaws.com',
   user     : 'root',
   password : 'rootroot',
   port     : 3306,
