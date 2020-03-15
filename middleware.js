@@ -1,30 +1,10 @@
-module.exports.nestedArray = (images) => {
-    let answer = [[]];
-    let id = 1;
-    let product = [];
-    
-    for (let i = 0; i <images.length; i++){
-        if (images[i].rating === null){
-            images[i].rating = 3;
-        }
-        if(i===images.length){
-            answer.push(product);
-        }
-        else if (images[i].id===id){
-            product.push(images[i])
-        }
-        else if (images[i].id-id>1){
-            while(images[i].id>id){
-                answer.push(product);
-                product = [];
-                id++;
-            }
-        }
-        else {
-            answer[id] = product;
-            product = [images[i]];
-            id++;
-        }
-    }
-    return answer;
+module.exports.concat = (products) => {
+  let answer = products[0];
+  let images = [];
+  for (i = 0; i < products.length; i ++) {
+    images.push(products[i].image);
+  }
+  answer.images = images;
+  delete answer.image;
+  return answer;
 }
