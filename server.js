@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'dist')));
 
 app.get('/images', (req, res) => {
-  console.time('route')
+  // console.time('route')
     database.get(req.query.id, (err, images) => {
         if (err){
             console.log(err);
@@ -21,7 +21,7 @@ app.get('/images', (req, res) => {
         } 
         else {
             res.send(middleware.concat(images));
-            console.timeEnd('route');
+            // console.timeEnd('route');
         }
     })
 })
