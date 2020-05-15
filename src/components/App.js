@@ -7,8 +7,8 @@ import ImageBar from './ImageBar.js';
 import MainImage from './MainImage.js';
 import './style.scss';
 import HiddenComponent from './HiddenComponent.js';
-const baseURL = 'http://newphoto2.us-east-2.elasticbeanstalk.com/';
-//const baseURL =' http://localhost:8080/';
+const baseURL = '3.22.167.31';
+// const baseURL =' http://localhost:3005/';
 export default class App extends React.Component {
   constructor() {
     super();
@@ -21,22 +21,16 @@ export default class App extends React.Component {
       search: 60
     };
   }
-  findOtherPics (data){
-    let answer = [];
-    data.forEach((datum)=>{
-        answer.push(datum.image)
-    })
-    return answer;
-}
+
   getImages() {
-    axios.get('/images', {baseURL})
+    axios.get('/images', {baseURL, params: {id: this.state.search}})
     .then( (data) => {
-      console.log(data.data[60])
+      console.log(data.data)
       this.setState({
         products : data.data,
-        currentProduct: data.data[this.state.search][0],
-        images: this.findOtherPics(data.data[this.state.search]),
-        currentImage: data.data[this.state.search][0].image
+        currentProduct: data.data[0],
+        images: data.data[0].image_urls,
+        currentImage: data.data[0].image_urls[0]
       })
     })
   }

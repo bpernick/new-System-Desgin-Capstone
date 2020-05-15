@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS image_render;
-CREATE DATABASE image_render;
-\connect image_render;
+DROP DATABASE IF EXISTS images_render;
+CREATE DATABASE images_render;
+\connect images_render;
 
 
 CREATE TABLE products (id SERIAL NOT NULL PRIMARY KEY, name VARCHAR (80), rating DECIMAL);

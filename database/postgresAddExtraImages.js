@@ -5,7 +5,7 @@ const faker = require('faker')
 const client = new Client({
   user: 'postgres',
   host: 'localhost',
-  database: 'image_render',
+  database: 'images_render',
   password: 'student',
   port: 5432,
 })

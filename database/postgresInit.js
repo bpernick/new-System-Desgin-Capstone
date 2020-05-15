@@ -1,13 +1,13 @@
+const {USERNAME, DB_NAME, PASSWORD} = require ('./config')
 const format = require('pg-format')
 const { Pool, Client } = require('pg')
 const faker = require('faker')
 
 const client = new Client({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'image_render',
-  password: 'student',
-  port: 5432,
+  user: process.env.USERNAME,
+  host: process.env.DB_NAME,
+  password: process.env.PASSWORD,
+  database: 'images_render',
 })
 client.connect()
 client.query('SELECT NOW()', (err, res) => {

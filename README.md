@@ -139,3 +139,9 @@ Summary report @ 18:59:41(-0500) 2020-03-15
 
 TOO MANY CLIENTS ERROR OCCURS between 100 and 200 RPS with max clients set to 10000
 
+# Other
+Query with aggregate function runs in abt 2.5 ms while simple join runs in about 1.5
+
+pg_ctl --pgdata=./data/db1 --log=./log/db1 --options="--port=5433" start
+
+Baseline: RPS sent: 522.19

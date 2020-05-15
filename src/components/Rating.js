@@ -8,7 +8,7 @@ const Rating = (props) => {
         <p className = 'blue-text'>87 Ratings</p>
         <StarRatingComponent
           name = 'hammer-rating'
-          value = {props.rating}
+          value = {parseInt(props.rating)}
           renderStarIcon= {() => <span id="icon"><FontAwesomeIcon icon="gavel" /></span>}
           starColor = 'rgb(3, 81, 125)'
           emptyStarColor = 'rgb(203, 211, 227)'

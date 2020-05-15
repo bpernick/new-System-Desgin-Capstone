@@ -14,6 +14,7 @@ const hashProductName = function(string) {
 }
 
 const Ids = (props) => {
+  console.log("props", props)
     return (
         <div className = 'ids'>
             <p> Item # {props.product.id}</p>
