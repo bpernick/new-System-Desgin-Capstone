@@ -1,11 +1,11 @@
 const {Client, Pool} = require ('pg');
 const format = require('pg-format');
-const {DB_NAME, USERNAME, PASSWORD} = require('./config.js')
+// const {DB_NAME, USERNAME, PASSWORD} = require('./config.js')
 
 const pool = new Pool ({
-  host : DB_NAME,
-  user : USERNAME,
-  password: PASSWORD,
+  host : process.env.DB_NAME,
+  user : process.env.USERNAME,
+  password: process.env.PASSWORD,
   port : 5432,
   database: 'images_render',
   max: 100

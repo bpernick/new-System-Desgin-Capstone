@@ -7,7 +7,7 @@ import ImageBar from './ImageBar.js';
 import MainImage from './MainImage.js';
 import './style.scss';
 import HiddenComponent from './HiddenComponent.js';
-const baseURL = '3.22.167.31';
+const baseURL = '18.219.77.204';
 // const baseURL =' http://localhost:3005/';
 export default class App extends React.Component {
   constructor() {
