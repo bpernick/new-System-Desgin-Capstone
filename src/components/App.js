@@ -23,7 +23,7 @@ export default class App extends React.Component {
   }
 
   getImages() {
-    axios.get('/images', {baseURL, params: {id: this.state.search}})
+    axios.get('/images', {params: {id: this.state.search}})
     .then( (data) => {
       console.log(data.data)
       this.setState({
