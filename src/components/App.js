@@ -18,7 +18,7 @@ export default class App extends React.Component {
       currentImage:'',
       HiddenComponentClass: 'hide',
       scale: 1,
-      search: 60
+      search: 61
     };
   }
 
