@@ -1,8 +1,68 @@
+
+I inherited a legacy codebase with a mysql database and refactored it to run with Postgres. 
+
+# Goal 1
+Scale the database (previously with 100 primary entries) to gracefully handle 10 million.
+
+Challenges:
+  - When trying to seed 10 million entries recieved error that javascript heap size was exceeded.
+  - When attempting to query the database with 10 million items, queries were either very slow or abandoned.
+  
+Solutions:
+  - Created a data generation and seeding algorithm that seeded a batch of 10 thousand entries every half second
+  - Created unique index on the primary key that appers in the query
+  - Created index on the foreign key that appers in the query
+
+
+# Goal 2
+
+Optimize the backend to handle as many incoming requests per second as possible. Artillery was used to generate fake users, with a baseline reading of 250 RPS before optimization.
+  
+Solutions:
+ - Pool database connections with max pool size of 100. This doubled RPS served to 500.
+ - Load balance read requests on the backend between 2 servers, using nginx as the load balancer and a read-only synchronous streaming replica as the second database. This increased RPS to about 750.
+
+ Challenges: 
+ - Finding the optimal max pool size required both experimentation and research as well as investigating the default postgres config to see what constraints were limiting max connections and whether it was a good idea to change them (after some experimentation it seemed the default config settings were good for my use case)
+ - Deciding what strategy to use to duplicate the database was also a small research project. Since my use case only needs read operations, I decided a synchronous streaming replica or "hot copy" was a good way to go.
+ - Configuring the master database to support replicas and implementing the hot copy required a fairly detailed dive into the postgres documentation.
+ - Load balancing for high availability with nginx is relatively straightforward but requires finding and changing default settings that explicitly limit RPS (likely for DDoS protection)
+
+# Goal 3
+
+Deploy the load-balanced app to AWS free tier.
+
+Solutions: 
+- Deployed and seeded a postgres database with RDS and created two synchronous streaming replicas.
+- Deployed three servers to raw EC2 instances running t2 micro. Deployed one more EC2 with an nginx load balancer to balance requests between the 3 servers.
+
+Future steps:
+- I am curious whether the response time bottleneck is in fact my server, my database queries, or both. If the database is in fact the database, having a single node server that load balances read requests between three diferent databases would be a far more cost-effective (and probably faster) architecture.
+The first challenge was to scale the database architecture, which was designed for 100 primary entries, to handle 10 million entries. I decided to index the primary keys and the foreign keys used in join queries.
+
+
+
+
+
+
+
+
+The main challenge was to maximize possible rps completed by my app. One easy way to do this may have been to collapse the database architecture into one big table and forgo the joins; while this certainly would have sped up query times I was more interested in performing optomizations that would not sacrifice memory (and would also push the boundaries of what I knew how to do).
+
+I used artillery to synthesize virtual users, and got an initial reading saying that my system served 250 virtual requests per second. I got RPS up to 500 by simply pooling connections with a max pool size of 100.
+
+To optimize further I decided to create a load balancer using read only synchronous streaming replicas of my database. 
+
+
+
+
 Refactor to run postgres
 
 Seed 10 million fake data points
   - Fails postman test without indexing;
   - Index only the primary and foreign keys used in the query
+
+
 
 # Preliminary data:
 500 RPS:
@@ -142,6 +202,44 @@ TOO MANY CLIENTS ERROR OCCURS between 100 and 200 RPS with max clients set to 10
 # Other
 Query with aggregate function runs in abt 2.5 ms while simple join runs in about 1.5
 
-pg_ctl --pgdata=./data/db1 --log=./log/db1 --options="--port=5433" start
-
 Baseline: RPS sent: 522.19
+
+All virtual users finished
+Summary report @ 20:46:01(-0500) 2020-05-20
+  Scenarios launched:  6000
+  Scenarios completed: 5840
+  Requests completed:  5840
+  RPS sent: 120.92
+  Request latency:
+    min: 132.4
+    max: 22933.7
+    median: 6288
+    p95: 10513.2
+    p99: 16784.1
+  Scenario counts:
+    0: 6000 (100%)
+  Codes:
+    200: 5840
+  Errors:
+    ECONNRESET: 96
+    ESOCKETTIMEDOUT: 64
+
+
+
+All virtual users finished
+Summary report @ 20:50:57(-0500) 2020-05-20
+  Scenarios launched:  6000
+  Scenarios completed: 6000
+  Requests completed:  6000
+  RPS sent: 196.59
+  Request latency:
+    min: 128.3
+    max: 1238.3
+    median: 188.3
+    p95: 255.5
+    p99: 294.6
+  Scenario counts:
+    0: 6000 (100%)
+  Codes:
+    200: 6000
+
