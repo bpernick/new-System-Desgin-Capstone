@@ -37,7 +37,7 @@ Solutions:
 - Deployed three servers to raw EC2 instances running t2 micro. Deployed one more EC2 with an nginx load balancer to balance requests between the 3 servers.
 
 Future steps:
-- I am curious whether the response time bottleneck is in fact my server, my database queries, or both. If the database is in fact the database, having a single node server that load balances read requests between three diferent databases would be a far more cost-effective (and probably faster) architecture.
+- I am curious whether the response time bottleneck is in fact my server, my database queries, or both. If the database is in fact the bottleneck, having a single node server that load balances read requests between three diferent databases would be a far more cost-effective (and probably faster) architecture.
 The first challenge was to scale the database architecture, which was designed for 100 primary entries, to handle 10 million entries. I decided to index the primary keys and the foreign keys used in join queries.
 
 
